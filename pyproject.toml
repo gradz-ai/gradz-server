@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "gradz-server"
+version = "0.1.0"
+description = "Backend server of gradz-ai written in python"
+authors = ["Kushagra Gupta <kushgpt08@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
