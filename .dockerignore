@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+.pytest_cache/
+.local
+.virtualenvs/
+.vscode/
+.idea/
+*.egg-info/
+.installed.cfg
+*.egg
+.cache
