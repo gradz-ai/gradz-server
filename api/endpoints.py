@@ -5,6 +5,8 @@ from services.document_loader import DocumentLoader
 from services.index_manager import IndexManager
 from services.query_engine import QueryEngine
 
+from services.prompts import few_shot_prompt
+
 import logging
 import sys
 
@@ -48,9 +50,11 @@ async def startup_event():
 @app.post("/query", response_model=dict, summary="Query the index", description="Query the document index and get a response.")
 async def query_index(request: QueryRequest):
     try:
+        logging.info(f"Received query: {request.query}")
         index = index_manager.get_index()
         query_engine = QueryEngine(index)
-        response = query_engine.query(request.query)
+        logging.info(f"Querying index with: {few_shot_prompt.format(question=request.query)}")
+        response = query_engine.query(few_shot_prompt.format(question=request.query))
         logging.info(f"Query: {request.query}, Response: {response}")
         return {"response": QueryResponse(response=str(response))}
     except Exception as e:
