@@ -1,5 +1,6 @@
 from llama_index.core import VectorStoreIndex, StorageContext, load_index_from_storage
 
+
 class IndexManager:
     def __init__(self, index_dir):
         self.index_dir = index_dir
@@ -9,7 +10,9 @@ class IndexManager:
     def load_or_create_index(self, documents=None):
         try:
             # Attempt to load the index from storage
-            self.storage_context = StorageContext.from_defaults(persist_dir=self.index_dir)
+            self.storage_context = StorageContext.from_defaults(
+                persist_dir=self.index_dir
+            )
             self.index = load_index_from_storage(self.storage_context)
         except Exception as e:
             print(f"Loading index failed: {e}. Initializing new index.")
@@ -23,5 +26,7 @@ class IndexManager:
 
     def get_index(self):
         if self.index is None:
-            raise ValueError("Index is not initialized. Please load or create the index first.")
+            raise ValueError(
+                "Index is not initialized. Please load or create the index first."
+            )
         return self.index
